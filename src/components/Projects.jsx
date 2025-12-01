@@ -1,8 +1,20 @@
-import React from 'react';
-import { Github, ExternalLink, Layers, Database, Cpu, Smartphone, Cloud, Server } from 'lucide-react';
+import React, { useState } from 'react';
+import { Github, ExternalLink, Layers, Database, Cpu, Smartphone, Cloud, Server, ChevronLeft, ChevronRight } from 'lucide-react';
 import rControlScreenshot from '../assets/r-control-screenshot.jpg';
+import rControl2 from '../assets/r-control-2.png';
+import rControl3 from '../assets/r-control-3.png';
 
 const Projects = () => {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const projectImages = [rControlScreenshot, rControl2, rControl3];
+
+    const nextImage = () => {
+        setCurrentImageIndex((prev) => (prev === projectImages.length - 1 ? 0 : prev + 1));
+    };
+
+    const prevImage = () => {
+        setCurrentImageIndex((prev) => (prev === 0 ? projectImages.length - 1 : prev - 1));
+    };
     return (
         <section id="projects" className="section projects">
             <div className="container">
@@ -100,9 +112,102 @@ const Projects = () => {
                             borderRadius: '8px',
                             overflow: 'hidden',
                             boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
-                            border: '1px solid #333'
+                            border: '1px solid #333',
+                            position: 'relative',
+                            aspectRatio: '16/9' // Enforce consistent aspect ratio
                         }}>
-                            <img src={rControlScreenshot} alt="R-Control Dashboard" style={{ width: '100%', height: 'auto', display: 'block', transform: 'scale(1.02)' }} />
+                            {/* Carousel Image */}
+                            <img
+                                src={projectImages[currentImageIndex]}
+                                alt={`R-Control Screenshot ${currentImageIndex + 1}`}
+                                style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'cover', // Cover the area
+                                    objectPosition: 'top', // Crop from bottom if needed (show top)
+                                    display: 'block',
+                                    transition: 'opacity 0.3s ease'
+                                }}
+                            />
+
+                            {/* Carousel Controls */}
+                            <button
+                                onClick={prevImage}
+                                style={{
+                                    position: 'absolute',
+                                    left: '1rem',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    background: 'rgba(0,0,0,0.7)',
+                                    color: '#fff',
+                                    border: '1px solid #555',
+                                    borderRadius: '50%',
+                                    width: '40px',
+                                    height: '40px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    cursor: 'pointer',
+                                    zIndex: 10,
+                                    transition: 'background 0.2s'
+                                }}
+                                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
+                                onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(0,0,0,0.7)'}
+                            >
+                                <ChevronLeft size={24} />
+                            </button>
+
+                            <button
+                                onClick={nextImage}
+                                style={{
+                                    position: 'absolute',
+                                    right: '1rem',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    background: 'rgba(0,0,0,0.7)',
+                                    color: '#fff',
+                                    border: '1px solid #555',
+                                    borderRadius: '50%',
+                                    width: '40px',
+                                    height: '40px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    cursor: 'pointer',
+                                    zIndex: 10,
+                                    transition: 'background 0.2s'
+                                }}
+                                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
+                                onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(0,0,0,0.7)'}
+                            >
+                                <ChevronRight size={24} />
+                            </button>
+
+                            {/* Indicators */}
+                            <div style={{
+                                position: 'absolute',
+                                bottom: '1rem',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                display: 'flex',
+                                gap: '0.5rem',
+                                zIndex: 10
+                            }}>
+                                {projectImages.map((_, index) => (
+                                    <div
+                                        key={index}
+                                        onClick={() => setCurrentImageIndex(index)}
+                                        style={{
+                                            width: '8px',
+                                            height: '8px',
+                                            borderRadius: '50%',
+                                            background: index === currentImageIndex ? '#fff' : 'rgba(255,255,255,0.3)',
+                                            cursor: 'pointer',
+                                            transition: 'background 0.2s'
+                                        }}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
