@@ -113,7 +113,9 @@ html {
   }
 
   .text-huge {
-    font-size: 3rem;
+    font-size: 2.2rem;
+    word-wrap: break-word;
+    /* Ensure it wraps if absolutely necessary */
   }
 
   .text-large {
