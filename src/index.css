@@ -126,10 +126,17 @@ html {
   }
 
   /* Hero Mobile Adjustments */
+  .section.hero {
+    min-height: auto !important;
+    padding-top: 6rem !important;
+    padding-bottom: 4rem !important;
+  }
+
   .hero-content {
     text-align: center;
     padding-right: 0 !important;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    /* Reduced from 2rem */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -137,7 +144,8 @@ html {
 
   .hero-image-container {
     height: auto !important;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    /* Reduced from 2rem */
   }
 
   .hero-image-wrapper {
