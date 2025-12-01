@@ -6,7 +6,7 @@ const Hero = () => {
     return (
         <section className="section hero" style={{ minHeight: '85vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
             <div className="container grid-layout" style={{ alignItems: 'center', position: 'relative' }}>
-                <div style={{ gridColumn: 'span 7', zIndex: 2, paddingRight: '3rem' }}>
+                <div className="hero-content" style={{ gridColumn: 'span 7', zIndex: 2, paddingRight: '3rem' }}>
                     <p style={{
                         textTransform: 'uppercase',
                         letterSpacing: '0.1em',
@@ -30,8 +30,8 @@ const Hero = () => {
                     </a>
                 </div>
 
-                <div style={{ gridColumn: 'span 5', position: 'relative', height: '100%', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
-                    <div style={{
+                <div className="hero-image-container" style={{ gridColumn: 'span 5', position: 'relative', height: '100%', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+                    <div className="hero-image-wrapper" style={{
                         position: 'relative',
                         width: '138%', // Increased by ~15% (120 * 1.15)
                         marginLeft: '-19%', // Centered (38% / 2)
